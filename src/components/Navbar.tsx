@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Award, BookOpen, Sliders, Terminal, CheckCircle2, User as UserIcon, LogOut, Video, GitBranch, Lock, Unlock, HelpCircle, ChevronDown, ShieldCheck } from 'lucide-react';
+import { Award, BookOpen, Sliders, Terminal, CheckCircle2, User as UserIcon, LogOut, Video, GitBranch, Lock, Unlock, HelpCircle, ChevronDown, ShieldCheck, Database } from 'lucide-react';
 import { LearnerProgress, User } from '../types/course';
 import { SrcaaLogo } from './SrcaaLogo';
 
@@ -10,6 +10,7 @@ interface NavbarProps {
   openAccessibility: () => void;
   openApiExplorer: () => void;
   openVideoAndGitGuide: () => void;
+  openDatabaseModal?: () => void;
   lowBandwidth: boolean;
   user: User | null;
   onOpenAuth: (initialTab?: 'signin' | 'signup') => void;
@@ -25,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   openAccessibility,
   openApiExplorer,
   openVideoAndGitGuide,
+  openDatabaseModal,
   lowBandwidth,
   user,
   onOpenAuth,
@@ -166,6 +168,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Terminal className="h-4 w-4" />
           </button>
 
+          {/* Cloud Database / Supabase Integration */}
+          {openDatabaseModal && (
+            <button
+              onClick={openDatabaseModal}
+              className="flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50/70 px-2.5 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs"
+              title="Cloud Database: Connect with Supabase or View Firestore Status"
+            >
+              <Database className="h-3.5 w-3.5 text-emerald-600" />
+              <span className="hidden sm:inline">Database</span>
+            </button>
+          )}
+
           {/* Direct 1-Click Lock Portal Button */}
           <button
             onClick={onLogout}
@@ -246,6 +260,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-emerald-600 font-bold text-[10px]">OPEN</span>
                     )}
                   </button>
+
+                  {openDatabaseModal && (
+                    <button
+                      onClick={() => {
+                        openDatabaseModal();
+                        setIsUserMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-1.5 rounded-lg hover:bg-slate-50 text-slate-700 flex items-center justify-between"
+                    >
+                      <span>Cloud Database / Supabase</span>
+                      <span className="text-emerald-600 font-bold text-[10px]">CONFIG</span>
+                    </button>
+                  )}
 
                   <div className="border-t border-slate-100 my-1" />
 

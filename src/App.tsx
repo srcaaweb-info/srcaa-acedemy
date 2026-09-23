@@ -17,6 +17,7 @@ import { ApiExplorerModal } from './components/ApiExplorerModal';
 import { AuthModal } from './components/AuthModal';
 import { VideoAndGitGuideModal } from './components/VideoAndGitGuideModal';
 import { SecureGateway } from './components/SecureGateway';
+import { DatabaseModal } from './components/DatabaseModal';
 import {
   Video,
   BookOpen,
@@ -57,6 +58,7 @@ export default function App() {
   const [isVideoGuideOpen, setIsVideoGuideOpen] = useState(false);
   const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
   const [isApiExplorerOpen, setIsApiExplorerOpen] = useState(false);
+  const [isDatabaseModalOpen, setIsDatabaseModalOpen] = useState(false);
   const [lockedAlertUnit, setLockedAlertUnit] = useState<Unit | null>(null);
 
   // Accessibility State
@@ -351,7 +353,18 @@ export default function App() {
   // Without login, no one can see the webpage or course!
   // ----------------------------------------------------
   if (!user && !isCheckingAuth) {
-    return <SecureGateway onAuthSuccess={handleAuthSuccess} />;
+    return (
+      <>
+        <SecureGateway
+          onAuthSuccess={handleAuthSuccess}
+          onOpenDatabaseModal={() => setIsDatabaseModalOpen(true)}
+        />
+        <DatabaseModal
+          isOpen={isDatabaseModalOpen}
+          onClose={() => setIsDatabaseModalOpen(false)}
+        />
+      </>
+    );
   }
 
   // Brief initial TLS handshake check loader
@@ -410,6 +423,7 @@ export default function App() {
         openAccessibility={() => setIsAccessibilityOpen(true)}
         openApiExplorer={() => setIsApiExplorerOpen(true)}
         openVideoAndGitGuide={() => setIsVideoGuideOpen(true)}
+        openDatabaseModal={() => setIsDatabaseModalOpen(true)}
         lowBandwidth={lowBandwidth}
         user={user}
         onOpenAuth={handleOpenAuth}
@@ -781,6 +795,12 @@ export default function App() {
         onClose={() => setIsApiExplorerOpen(false)}
       />
 
+      {/* Cloud Database & Supabase Modal */}
+      <DatabaseModal
+        isOpen={isDatabaseModalOpen}
+        onClose={() => setIsDatabaseModalOpen(false)}
+      />
+
       {/* Academic Clean White Footer */}
       <footer className="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -796,6 +816,13 @@ export default function App() {
             <span>WCAG 2.1 AA Compliant</span>
             <span aria-hidden="true">·</span>
             <span>TILT Methodology</span>
+            <span aria-hidden="true">·</span>
+            <button
+              onClick={() => setIsDatabaseModalOpen(true)}
+              className="text-emerald-700 hover:underline font-semibold flex items-center gap-1"
+            >
+              <span>Cloud Database / Supabase</span>
+            </button>
             <span aria-hidden="true">·</span>
             <button
               onClick={() => setIsApiExplorerOpen(true)}

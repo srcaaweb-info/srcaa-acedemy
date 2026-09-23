@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Shield, Lock, CheckCircle2, ArrowRight, Mail, Key, Building, Globe, User as UserIcon, AlertCircle, Sparkles } from 'lucide-react';
+import { Shield, Lock, CheckCircle2, ArrowRight, Mail, Key, Building, Globe, User as UserIcon, AlertCircle, Sparkles, Database } from 'lucide-react';
 import { SrcaaLogo } from './SrcaaLogo';
 import { User } from '../types/course';
 
 interface SecureGatewayProps {
   onAuthSuccess: (user: User) => void;
+  onOpenDatabaseModal?: () => void;
 }
 
-export const SecureGateway: React.FC<SecureGatewayProps> = ({ onAuthSuccess }) => {
+export const SecureGateway: React.FC<SecureGatewayProps> = ({ onAuthSuccess, onOpenDatabaseModal }) => {
   const [tab, setTab] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -114,6 +115,16 @@ export const SecureGateway: React.FC<SecureGatewayProps> = ({ onAuthSuccess }) =
           <SrcaaLogo size={36} showTagline={true} />
         </div>
         <div className="flex items-center gap-2">
+          {onOpenDatabaseModal && (
+            <button
+              type="button"
+              onClick={onOpenDatabaseModal}
+              className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
+            >
+              <Database className="h-3 w-3 text-emerald-600" />
+              <span>Database / Supabase</span>
+            </button>
+          )}
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-emerald-800">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>256-Bit SSL/TLS Encrypted Gateway</span>

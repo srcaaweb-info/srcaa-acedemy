@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Authenticated candidate or faculty member account",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user ID" },
+        "name": { "type": "string", "description": "Full legal name" },
+        "email": { "type": "string", "format": "email", "description": "Institutional email" },
+        "provider": { "type": "string", "enum": ["google", "microsoft", "institutional", "email"] },
+        "role": { "type": "string", "enum": ["scholar", "faculty", "admin"] },
+        "institution": { "type": "string", "description": "Academic affiliation" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "LearnerProgress": {
+      "title": "LearnerProgress",
+      "description": "Progress state and assessment grades for a candidate",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "currentUnitId": { "type": "number" },
+        "overallProgressPercent": { "type": "number" },
+        "timeSpentMinutes": { "type": "number" },
+        "isCertificateEligible": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "currentUnitId", "overallProgressPercent"]
+    },
+    "DiscussionComment": {
+      "title": "DiscussionComment",
+      "description": "Academic discourse comment posted within a unit discussion quadrant",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string" },
+        "authorId": { "type": "string" },
+        "content": { "type": "string" },
+        "upvotes": { "type": "number" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "authorName", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile records"
+    },
+    "/progress/{userId}": {
+      "schema": { "$ref": "#/entities/LearnerProgress" },
+      "description": "Learner progress matrix and grading states"
+    },
+    "/discussions/{unitId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/DiscussionComment" },
+      "description": "Unit discussion discourse threads"
+    }
+  }
+}
