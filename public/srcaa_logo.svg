@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Outer Maroon Circle -->
+  <circle cx="100" cy="100" r="88" stroke="#7D2326" stroke-width="8" />
+
+  <!-- Flying Bird / Dove in flight -->
+  <path d="M 85 45 C 80 40, 72 38, 65 42 C 60 45, 62 55, 68 62 C 73 68, 80 72, 85 75 C 83 80, 80 87, 85 91 C 88 94, 95 91, 98 86 C 102 91, 108 93, 112 90 C 115 87, 112 80, 110 75 C 118 73, 126 68, 131 61 C 136 54, 136 45, 129 42 C 122 39, 114 43, 110 48 C 104 45, 96 44, 91 48 Z" fill="#7D2326" />
+
+  <!-- Left Open Book Page (raised diagonally) -->
+  <!-- Dark maroon spine / backing -->
+  <path d="M 52 64 L 64 60 L 98 140 L 84 145 Z" fill="#7D2326" />
+  <!-- Left page face in silver-white -->
+  <path d="M 64 61 L 76 57 L 108 135 L 96 139 Z" fill="#E2E8F0" stroke="#7D2326" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Right Curving Book Pages -->
+  <!-- Upper flapping page in silver-white -->
+  <path d="M 96 137 C 105 110, 130 92, 160 97 C 145 106, 120 120, 104 140 Z" fill="#CBD5E1" stroke="#7D2326" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Golden / Amber Middle Page Accent -->
+  <path d="M 104 139 C 115 125, 140 114, 166 116 C 160 123, 138 133, 108 143 Z" fill="#E5A93C" stroke="#7D2326" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Bottom open page in silver-white -->
+  <path d="M 96 142 L 175 137 L 176 150 L 93 154 Z" fill="#E2E8F0" stroke="#7D2326" stroke-width="3.5" stroke-linejoin="round" />
+  <!-- Underline shadow -->
+  <path d="M 82 148 L 178 145" stroke="#7D2326" stroke-width="5" stroke-linecap="round" />
+</svg>

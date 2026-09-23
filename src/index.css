@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* SRCAA Brand Colors */
+    --color-srcaa-maroon: #8C2528;
+    --color-srcaa-maroon-dark: #6D1B1E;
+    --color-srcaa-maroon-light: #A83236;
+    --color-srcaa-gold: #F59E0B;
+    --color-srcaa-gold-light: #FBBF24;
+    --color-srcaa-gold-dark: #D97706;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-code {
+  font-family: var(--font-mono);
+}
+
+/* Accessibility & Dyslexia-friendly support */
+body.dyslexia-friendly {
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+body.high-contrast {
+  contrast: 1.25;
+}
+

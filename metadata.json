@@ -1,0 +1,6 @@
+{
+  "name": "SRCAA Academy - The Post-Human Charter",
+  "description": "SRCAA Academy: Learn. Research. Innovate. Grow. Official LMS platform for The Post-Human Charter: Rights & Freedom in the Age of AI and Bio-Enhancement MOOC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
